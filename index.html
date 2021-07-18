@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=s, initial-scale=1.0" />
+        <title>贪吃蛇</title>
+        <style>
+            #map {
+                position: relative;
+                width: 400px;
+                height: 400px;
+                background-color: #000;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="grade">o</div>
+        <div id="map"></div>
+        <script type="module">
+            import Game from '/js/game.js';
+            {
+                let map = document.querySelector('#map');
+                let game = new Game(map, 10, 20);
+                let gradeEl = document.querySelector('#grade');
+                document.onclick = function () {
+                    game.start();
+                };
+                game.on('changeGrade', function (grade) {
+                    gradeEl.innerHTML = `分值：${grade}`;
+                });
+                game.on('win', function (grade) {
+                    alert('你赢了');
+                });
+                game.on('over', function (grade) {
+                    alert('游戏结束');
+                });
+
+                // game.toGrade = function (grade) {
+                //     gradeEl.innerHTML = `分值：${grade}`;
+                // };
+                // game.toWin = function () {
+                //     alert('你赢了');
+                // };
+                // game.toOver = function () {
+                //     alert('游戏结束');
+                // };
+                // 自定义控制器
+                // game.addControl(function () {
+                //     const self = this;
+                //     window.addEventListener('keydown', ({ keyCode }) => {
+                //         switch (keyCode) {
+                //             // 左
+                //             case 65:
+                //                 this.snake.changeDir('left');
+                //                 break;
+                //             // 上
+                //             case 87:
+                //                 this.snake.changeDir('top');
+                //                 break;
+                //             // 右
+                //             case 68:
+                //                 this.snake.changeDir('right');
+                //                 break;
+                //             // 下
+                //             case 83:
+                //                 this.snake.changeDir('bottom');
+                //                 break;
+                //         }
+                //     });
+                // });
+            }
+        </script>
+    </body>
+</html>
